@@ -1,4 +1,5 @@
 import React from "react";
+import Book from "./Book.js";
 
 class Shelves extends React.Component {
   render() {
@@ -10,6 +11,7 @@ class Shelves extends React.Component {
             <div className="bookshelf-books">
               <ol className="books-grid">
                 <li>
+                  <Book />
                   <div className="book">
                     <div className="book-top">
                       <div
