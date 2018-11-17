@@ -1,10 +1,9 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 // import * as BooksAPI from './BooksAPI'
 import "./App.css";
-import SearchBtn from "./components/SearchBtn.js";
 import SearchPage from "./components/pages/SearchPage.js";
 import MainPage from "./components/pages/MainPage.js";
+import { Switch, Route } from "react-router-dom";
 
 class BooksApp extends React.Component {
   state = {
@@ -20,7 +19,10 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        {this.state.showSearchPage ? <SearchPage /> : <MainPage />}
+        <Switch>
+          <Route exact path="/" component={MainPage} />
+          <Route path="/search" component={SearchPage} />
+        </Switch>
       </div>
     );
   }
