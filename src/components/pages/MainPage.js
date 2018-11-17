@@ -8,19 +8,28 @@ class MainPage extends React.Component {
     books: []
   };
 
-  componentDidMount() {
+  getBooks() {
     BooksAPI.getAll().then(books => {
       this.setState({ books });
       console.log(books);
     });
   }
+
+  componentDidMount() {
+    this.getBooks();
+  }
+
+  changeShelf = (book, shelf) => {
+    BooksAPI.update(book, shelf).then(this.getBooks());
+  };
+
   render() {
     return (
       <div className="list-books">
         <div className="list-books-title">
           <h1> MyReads </h1>{" "}
         </div>{" "}
-        <Shelves books={this.state.books} />
+        <Shelves books={this.state.books} changeShelf={this.changeShelf} />
         <SearchBtn />
       </div>
     );

@@ -1,13 +1,6 @@
 import React from "react";
 
 class Book extends React.Component {
-  state = {
-    imageUrl: "url('')",
-    shelf: "current",
-    title: "To Kill a Mockingbird",
-    author: "Harper Lee"
-  };
-
   render() {
     let bookUrl = "url('" + this.props.data.imageLinks.thumbnail + "')";
     return (
@@ -20,21 +13,30 @@ class Book extends React.Component {
               height: 193,
               backgroundImage: bookUrl
             }}
-          />{" "}
+          />
           <div className="book-shelf-changer">
-            <select>
+            <select
+              value={this.props.currentShelf}
+              onChange={event =>
+                this.props.changeShelf(this.props.data, event.target.value)
+              }
+            >
               <option value="move" disabled>
-                Move to...{" "}
-              </option>{" "}
-              <option value="currentlyReading">Currently Reading </option>{" "}
-              <option value="wantToRead"> Want to Read </option>{" "}
-              <option value="read"> Read </option>{" "}
-              <option value="none"> None </option>{" "}
-            </select>{" "}
-          </div>{" "}
-        </div>{" "}
-        <div className="book-title"> {this.props.data.title} </div>{" "}
-        <div className="book-authors"> {this.props.data.authors} </div>{" "}
+                Move to...
+              </option>
+              <option value="currentlyReading">Currently Reading </option>
+              <option value="wantToRead"> Want to Read </option>
+              <option value="read"> Read </option>
+              <option value="none"> None </option>
+            </select>
+          </div>
+        </div>
+        <div className="book-title"> {this.props.data.title} </div>
+        <div className="book-authors">
+          {this.props.data.authors.map(author => (
+            <span key={author}>{author}&nbsp;</span>
+          ))}
+        </div>
       </div>
     );
   }
