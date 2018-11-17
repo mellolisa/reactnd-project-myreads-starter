@@ -1,11 +1,13 @@
 import React from "react";
 import Book from "./Book.js";
+import Shelf from "./Shelf.js";
 
 class Shelves extends React.Component {
   render() {
     return (
       <div className="list-books-content">
         <div>
+          <Shelf />
           <div className="bookshelf">
             <h2 className="bookshelf-title"> Currently Reading </h2>{" "}
             <div className="bookshelf-books">
