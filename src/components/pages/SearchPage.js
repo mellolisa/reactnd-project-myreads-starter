@@ -1,7 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import * as BooksAPI from "../../BooksAPI.js";
 
 class SearchPage extends React.Component {
+  state = {
+    /* tbd */
+  };
+
   render() {
     return (
       <div className="search-books">
