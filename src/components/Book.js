@@ -2,14 +2,14 @@ import React from "react";
 
 class Book extends React.Component {
   state = {
-    imageUrl:
-      "url('http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api')",
+    imageUrl: "url('')",
     shelf: "current",
     title: "To Kill a Mockingbird",
     author: "Harper Lee"
   };
 
   render() {
+    let bookUrl = "url('" + this.props.data.imageLinks.thumbnail + "')";
     return (
       <div className="book">
         <div className="book-top">
@@ -18,7 +18,7 @@ class Book extends React.Component {
             style={{
               width: 128,
               height: 193,
-              backgroundImage: this.state.imageUrl
+              backgroundImage: bookUrl
             }}
           />{" "}
           <div className="book-shelf-changer">
@@ -33,8 +33,8 @@ class Book extends React.Component {
             </select>{" "}
           </div>{" "}
         </div>{" "}
-        <div className="book-title"> {this.state.title} </div>{" "}
-        <div className="book-authors"> {this.state.author} </div>{" "}
+        <div className="book-title"> {this.props.data.title} </div>{" "}
+        <div className="book-authors"> {this.props.data.authors} </div>{" "}
       </div>
     );
   }
