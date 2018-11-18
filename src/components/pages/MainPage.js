@@ -30,7 +30,7 @@ class MainPage extends React.Component {
           <h1> MyReads </h1>{" "}
         </div>{" "}
         <Shelves books={this.state.books} changeShelf={this.changeShelf} />
-        <SearchBtn />
+        <SearchBtn changeShelf={this.changeShelf} />
       </div>
     );
   }

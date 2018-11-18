@@ -33,9 +33,11 @@ class Book extends React.Component {
         </div>
         <div className="book-title"> {this.props.data.title} </div>
         <div className="book-authors">
-          {this.props.data.authors.map(author => (
-            <span key={author}>{author}&nbsp;</span>
-          ))}
+          {this.props.data.authors
+            ? this.props.data.authors.map(author => (
+                <span key={author}>{author}&nbsp;</span>
+              ))
+            : "none"}
         </div>
       </div>
     );
