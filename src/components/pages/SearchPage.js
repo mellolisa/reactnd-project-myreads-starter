@@ -6,11 +6,24 @@ import Book from "../Book.js";
 class SearchPage extends React.Component {
   state = {
     query: "",
-    searchedBooks: []
+    searchedBooks: [],
+    books: []
   };
 
-  changeShelf = (searchedBook, shelf) => {
-    BooksAPI.update(searchedBook, shelf);
+  componentDidMount() {
+    this.getBooks();
+  }
+
+  getBooks() {
+    BooksAPI.getAll().then(books => {
+      this.setState({ books });
+    });
+  }
+
+  changeShelf = (book, shelf) => {
+    BooksAPI.update(book, shelf).then(books => {
+      this.getBooks();
+    });
   };
 
   updateQuery = query => {
@@ -30,6 +43,17 @@ class SearchPage extends React.Component {
     } else {
       this.setState({ searchedBooks: [] });
     }
+  }
+
+  getCurrentShelf(key) {
+    let shelf = "";
+    let book = this.state.books.filter(book => book.id === key);
+    if (!book[0]) {
+      shelf = "none";
+    } else {
+      shelf = book[0].shelf;
+    }
+    return shelf;
   }
 
   render() {
@@ -61,7 +85,11 @@ class SearchPage extends React.Component {
           <ol className="books-grid">
             {this.state.searchedBooks.map(searchedBook => (
               <li key={searchedBook.id}>
-                <Book data={searchedBook} changeShelf={this.changeShelf} />
+                <Book
+                  data={searchedBook}
+                  changeShelf={this.changeShelf}
+                  currentShelf={this.getCurrentShelf(searchedBook.id)}
+                />
               </li>
             ))}
           </ol>

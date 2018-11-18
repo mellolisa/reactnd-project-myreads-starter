@@ -2,7 +2,12 @@ import React from "react";
 
 class Book extends React.Component {
   render() {
-    let bookUrl = "url('" + this.props.data.imageLinks.thumbnail + "')";
+    let bookUrl = "blank";
+    if (!this.props.data.imageLinks) {
+      bookUrl = "url('none')";
+    } else {
+      bookUrl = "url('" + this.props.data.imageLinks.thumbnail + "')";
+    }
     return (
       <div className="book">
         <div className="book-top">
@@ -26,7 +31,7 @@ class Book extends React.Component {
               </option>
               <option value="currentlyReading">Currently Reading </option>
               <option value="wantToRead"> Want to Read </option>
-              <option value="read"> Read </option>
+              <option value="read"> Already Read </option>
               <option value="none"> None </option>
             </select>
           </div>

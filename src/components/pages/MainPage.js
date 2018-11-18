@@ -11,7 +11,6 @@ class MainPage extends React.Component {
   getBooks() {
     BooksAPI.getAll().then(books => {
       this.setState({ books });
-      console.log(books);
     });
   }
 
@@ -30,7 +29,7 @@ class MainPage extends React.Component {
           <h1> MyReads </h1>{" "}
         </div>{" "}
         <Shelves books={this.state.books} changeShelf={this.changeShelf} />
-        <SearchBtn changeShelf={this.changeShelf} />
+        <SearchBtn />
       </div>
     );
   }
